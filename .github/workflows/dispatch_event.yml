@@ -29,7 +29,7 @@ jobs:
           echo "changes=${{ env.changes }}" # for debugging
 
       - name: Dispatch event
-        if: env.changes == 'true'
+        if: github.env.changes == 'true'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PRIVATE_GH_PAT }}
