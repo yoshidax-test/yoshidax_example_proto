@@ -15,17 +15,20 @@ jobs:
       - name: Fetch all history for all tags and branches
         run: git fetch --prune --unshallow
 
+      - name: Fetch master branch
+        run: git fetch origin master:master
+
       - name: Check for changes in src/printing
         id: check_changes
         run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^src/printing/'; then
+          if git diff --name-only master ${{ github.sha }} | grep -q '^src/printing/'; then
             echo "changes=true" >> $GITHUB_ENV
           else
             echo "changes=false" >> $GITHUB_ENV
           fi
 
       - name: Dispatch event
-        if: github.env.changes == 'true'
+        if: env.changes == 'true'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
