@@ -26,11 +26,10 @@ jobs:
           else
             echo "changes=false" >> $GITHUB_ENV
           fi
-          echo "changes=${{ github.env.changes }}" # for debugging
-          echo "changes=${{ github.env.changes }}" # for debugging
+          echo "changes=${{ env.changes }}" # for debugging
 
       - name: Dispatch event
-        if: github.env.changes == 'true'
+        if: env.changes == 'true'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PRIVATE_GH_PAT }}
