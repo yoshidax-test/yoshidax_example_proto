@@ -3,7 +3,7 @@ name: Dispatch Event on Push
 on:
   push:
     branches:
-      - '**'
+      - 'master'
 
 jobs:
   dispatch:
