@@ -26,6 +26,8 @@ jobs:
           else
             echo "changes=false" >> $GITHUB_ENV
           fi
+          echo "changes=${{ github.env.changes }}" # for debugging
+          echo "changes=${{ github.env.changes }}" # for debugging
 
       - name: Dispatch event
         if: github.env.changes == 'true'
