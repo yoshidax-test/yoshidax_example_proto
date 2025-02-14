@@ -1,5 +1,6 @@
 name: Notify Update Printing Proto
-description: printingのraksul.comに関連するprotoファイルに変更があった場合にprinting-client-phpレポジトリに通知する
+description: |
+  printingのraksul.comに関連するprotoファイルに変更があった場合にprinting-client-phpレポジトリに通知する
 
 on:
   push:
@@ -10,7 +11,7 @@ on:
       - 'raksul/printing/usecase/**/*.proto'
 
 jobs:
-  dispatch:
+  notify_update_printing_proto:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -20,5 +21,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PRIVATE_GH_PAT }}
+          # repository: raksul/printing-client-php
           repository: yoshidax/yoshidax_example_proto_clinet
           event-type: update-printing-proto
