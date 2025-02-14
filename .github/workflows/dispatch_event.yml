@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - 'master'
+    paths:
+      - 'raksul/product/v1/printing.proto'
+      - 'raksul/printing/**/*.proto'
 
 jobs:
   dispatch:
