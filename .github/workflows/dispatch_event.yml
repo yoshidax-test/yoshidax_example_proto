@@ -33,5 +33,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PRIVATE_GH_PAT }}
-          repository: yoshidax/yoshidax_example_proto_client
+          repository: yoshidax/yoshidax_example_proto_clinet
           event-type: update
