@@ -12,6 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune --unshallow
+
       - name: Check for changes in src/printing
         id: check_changes
         run: |
@@ -22,7 +25,7 @@ jobs:
           fi
 
       - name: Dispatch event
-        if: steps.check_changes.outputs.changes == 'true'
+        if: github.env.changes == 'true'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
